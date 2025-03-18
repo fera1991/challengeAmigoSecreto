@@ -15,11 +15,11 @@ function agregarAmigo() {
         //agrega el nombre del amigo a la lista.
         listaNombres.push(nombreAmigo);
         nombreAmigo = "";
-        renderLista();
+        renderizarLista();
     }
     else{
         //Imprime un alert para indicarle al usuario que no deje vacio el texto.
-        alert("No dejes vacio el en la entrada de texto");
+        alert("Por favor, ingrese un nombre válido.");
     }
     
     //Limpiar input
@@ -28,13 +28,25 @@ function agregarAmigo() {
 
 function renderizarLista() {
     let lista = document.getElementById("listaAmigos")
-    lista.innerHTML = ""
+    lista.innerHTML = "";
 
     listaNombres.forEach( nombre => {
         let elemento = document.createElement("li");
         elemento.textContent = nombre; 
-        lista.appendChild(elemento)
+        lista.appendChild(elemento);
     })
     
 }
 
+function sortearAmigo(){
+    
+    let numeroElegido = Math.floor(Math.random()*listaNombres.length);
+    let amigoSorteado = listaNombres[numeroElegido];
+
+    let rederizarGanador = document.getElementById("resultado");
+    rederizarGanador.innerText = `El amigo secreto sorteado es: ${amigoSorteado}`;
+
+    listaNombres = [];
+    renderizarLista();
+
+}
